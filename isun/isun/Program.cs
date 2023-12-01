@@ -47,6 +47,9 @@ namespace isun
                 WriteLog(authResp.Error);
                 return;
             }
+
+            WriteLog("Got token: " + authResp.Object.TokenValue);
+            
         }
 
         private static void WriteLog<TData>(TData data)
