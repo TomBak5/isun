@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace isun.Responses
+namespace isun.Models.ResponseModels
 {
     public class AuthResponse
     {
@@ -10,7 +10,7 @@ namespace isun.Responses
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
-            return this.TokenValue == ((AuthResponse)obj).TokenValue;
+            return TokenValue == ((AuthResponse)obj).TokenValue;
         }
     }
 }

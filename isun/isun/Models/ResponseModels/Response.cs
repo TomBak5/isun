@@ -1,4 +1,4 @@
-﻿namespace isun.Responses
+﻿namespace isun.Models.ResponseModels
 {
     public class Response<TRespData> where TRespData : class
     {

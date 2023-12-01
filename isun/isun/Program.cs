@@ -1,11 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using isun.Services;
+using Microsoft.Extensions.Configuration;
 using Serilog;
+using System.Net.Http.Headers;
 
 namespace isun
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
             var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -28,6 +30,20 @@ namespace isun
                 Log.Logger.Warning("First param is wrong. Shoud be \"--cities\"");
                 return;
             }
+
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://weather-api.isun.ch/api/"),
+            };
+            httpClient.DefaultRequestHeaders.Add("Accept", "text/plain");
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("api-version", "1.0");
+
+            var weatherService = new WeatherServiceProcessor(httpClient);
+            var authResp = await weatherService.Authorize();
+
+            if (!authResp.IsOk)
+                return;
         }
     }
 }

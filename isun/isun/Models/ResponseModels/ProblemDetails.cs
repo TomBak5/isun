@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace isun.Responses
+namespace isun.Models.ResponseModels
 {
     public class ProblemDetails
     {
