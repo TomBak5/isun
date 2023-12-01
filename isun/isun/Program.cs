@@ -49,6 +49,17 @@ namespace isun
             }
 
             WriteLog("Got token: " + authResp.Object.TokenValue);
+
+            httpClient.DefaultRequestHeaders.Add("Authorization", authResp.Object.TokenValue);
+
+            List<string> cities = new List<string>();
+
+            for (int i = 1; i < args.Length-1; i++)
+            {
+                cities.Add(args[i].Replace(",", ""));
+            };
+
+
         }
 
         private static void WriteLog<TData>(TData data)
