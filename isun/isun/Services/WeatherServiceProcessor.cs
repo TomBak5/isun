@@ -60,5 +60,10 @@ namespace isun.Services
             }
             return response;
         }
+
+        public void Close()
+        {
+            _httpClient.Dispose();
+        }
     }
 }
