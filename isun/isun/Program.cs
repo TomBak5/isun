@@ -1,4 +1,6 @@
+using isun.Implementations;
 using isun.Services;
+using isun.Tools;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using System.Net.Http.Headers;
@@ -75,6 +77,9 @@ namespace isun
                 WriteLog("Precipitation: " + cityData.Precipitation);
                 WriteLog("Temperature: " + cityData.Temperature);
                 WriteLog("Summary: " + cityData.Summary);
+
+                var db = new LightDbDataSaver(cityData);
+                DataProcessor.Save(db);
             }
         }
 
