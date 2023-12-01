@@ -43,7 +43,20 @@ namespace isun
             var authResp = await weatherService.Authorize();
 
             if (!authResp.IsOk)
+            {
+                WriteLog(authResp.Error);
                 return;
+            }
+        }
+
+        private static void WriteLog<TData>(TData data)
+        {
+            Log.Logger.Information($"{data}");
+        }
+
+        private static void WriteWarning<TData>(TData data)
+        {
+            Log.Logger.Warning($"{data}");
         }
     }
 }

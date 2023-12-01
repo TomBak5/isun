@@ -14,5 +14,10 @@ namespace isun.Models.ResponseModels
         public string Detail { get; set; }
         [JsonPropertyName("instance")]
         public string Instance { get; set; }
+
+        public override string ToString()
+        {
+            return $"Type: {this.Type}, Title: {this.Title}, Status: {this.Status}, Detail: {this.Detail}, Instance: {this.Instance}";
+        }
     }
 }
