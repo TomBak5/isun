@@ -41,5 +41,24 @@ namespace isun.Services
             }
             return response;
         }
+
+        public async Task<Response<WeatherResponse>> GetWeather(string city)
+        {
+            var respMsg = await _httpClient.GetAsync("weathers/" + city);
+
+            var content = await respMsg.Content.ReadAsStringAsync();
+            var response = new Response<WeatherResponse>();
+            if (!respMsg.IsSuccessStatusCode)
+            {
+                response.IsOk = false;
+                response.Error = JsonSerializer.Deserialize<ProblemDetails>(content);
+            }
+            else
+            {
+                response.IsOk = true;
+                response.Object = JsonSerializer.Deserialize<WeatherResponse>(content);
+            }
+            return response;
+        }
     }
 }

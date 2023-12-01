@@ -54,12 +54,28 @@ namespace isun
 
             List<string> cities = new List<string>();
 
-            for (int i = 1; i < args.Length-1; i++)
+            for (int i = 1; i < args.Length - 1; i++)
             {
                 cities.Add(args[i].Replace(",", ""));
             };
 
+            foreach (var city in cities)
+            {
+                var resp = await weatherService.GetWeather(city);
 
+                if (!resp.IsOk)
+                    continue;
+
+                var cityData = resp.Object;
+
+                WriteLog("");
+                WriteLog("Weather forecast:");
+                WriteLog("City: " + cityData.City);
+                WriteLog("WindSpeed: " + cityData.WindSpeed);
+                WriteLog("Precipitation: " + cityData.Precipitation);
+                WriteLog("Temperature: " + cityData.Temperature);
+                WriteLog("Summary: " + cityData.Summary);
+            }
         }
 
         private static void WriteLog<TData>(TData data)

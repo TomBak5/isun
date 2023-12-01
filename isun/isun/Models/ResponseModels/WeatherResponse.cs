@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace isun.Responses
+namespace isun.Models.ResponseModels
 {
     public class WeatherResponse
     {
@@ -28,11 +28,11 @@ namespace isun.Responses
         {
             if (obj == null) return false;
             var wr = (WeatherResponse)obj;
-            return this.City == wr.City &&
-                this.Temperature == wr.Temperature &&
-                this.Precipitation == wr.Precipitation &&
-                this.WindSpeed == wr.WindSpeed &&
-                this.Summary == wr.Summary;
+            return City == wr.City &&
+                Temperature == wr.Temperature &&
+                Precipitation == wr.Precipitation &&
+                WindSpeed == wr.WindSpeed &&
+                Summary == wr.Summary;
         }
     }
 }
